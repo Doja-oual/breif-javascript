@@ -8,3 +8,17 @@
     background-size: 360px;
     background-position: right bottom;
 }
+.modal__tasks.active {
+    display: block;
+}
+.modal__tasks  {
+    display: none;
+}
+#modal-task {
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
