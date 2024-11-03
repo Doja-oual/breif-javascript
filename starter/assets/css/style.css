@@ -22,3 +22,79 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
 }
+/* Style pour les cartes de tâche avec une palette de couleurs féminines */
+.task-card {
+    background-color: #f9f3f3; /* Un fond rose très doux */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: scale(1.03);
+}
+
+.task-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.task-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d5006d; /* Un rose foncé pour le titre */
+}
+
+.task-priority {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.task-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.task-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-date {
+    font-size: 12px;
+    color: #777;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-button, .delete-button {
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #ff6f61; /* Une couleur pêche pour le bouton Modifier */
+}
+
+.delete-button {
+    background-color: #f44336; /* Un rouge vif pour le bouton Supprimer */
+}
+
