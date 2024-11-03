@@ -136,7 +136,31 @@ function setSuccess(element) {
     inputControl.classList.remove('error');
 }
 
-//
+
+//------------ Modifie tache ------------------//
+function tacheModifier(id){
+    const taches =tachesList.find(t => t.id ===id);
+    if(!taches) return;
+
+    Title.value= taches.Title;
+    document.querySelector(`input[name="task-type"][value="${taches.Type}"]`).ariaChecked;
+    Priority.value = taches.Priority;
+    Status.value = taches.Status;
+    Dateform.value= taches.Dateform;
+    Description.value = taches.Description;
+    form.setAttribute('data')
+
+
+
+
+
+
+
+
+}
+
+//Supprimer une tâche ---------------------//
+
 
 
 

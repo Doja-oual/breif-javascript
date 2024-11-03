@@ -97,4 +97,7 @@
 .delete-button {
     background-color: #f44336; /* Un rouge vif pour le bouton Supprimer */
 }
+.content-div{
+    background-color: #d5006d;
+}
 

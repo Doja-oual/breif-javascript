@@ -19,13 +19,35 @@
     <link href="assets/css/default/app.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
+    <style>
+      /* Styles for the background video */
+      #background-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; /* Place it behind all other content */
+      }
+      /* Optional: Adjust the content visibility */
+      .app-content {
+        position: relative;
+        z-index: 1; /* Make sure content is above video */
+      }
+    </style>
   </head>
   <body>
+    <video id="background-video" autoplay loop >
+      <source src="assets/img/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
     <!-- BEGIN #app -->
     <div id="app" class="app-without-sidebar">
       heeuy
+      
       <!-- BEGIN #content -->
-      <div id="content" class="app-content main-style">
+      <div id="content"  class=" app-content main-style">
         <div class="d-flex align-items-center mb-3">
           <div>
             <ol class="breadcrumb">
@@ -109,7 +131,7 @@
         ><i class="fa fa-angle-up"></i
       ></a>
       <!-- END scroll-top-btn -->
-    </div>
+    
     <!-- END #app -->
 
 <!-- TASK MODAL -->
@@ -181,7 +203,7 @@
     </div>
   </div>
 </div>
-
+</div>
     <!-- ================== BEGIN core-js ================== -->
     <script src="assets/js/script.js"></script>
     <!-- ================== END core-js ================== -->
