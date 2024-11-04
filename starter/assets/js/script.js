@@ -1,10 +1,11 @@
+//modale de add task ------>form
 document.querySelector(".ms-auto").addEventListener("click", function () {
   document.querySelector("#modal-task").classList.add("active");
 });
+//modale form------removeform
 document.querySelector(".btn-close").addEventListener("click", function () {
   document.querySelector("#modal-task").classList.remove("active");
 });
-
 
 const form = document.getElementById("form-task");
 const Title = document.getElementById("task-title");
@@ -14,6 +15,7 @@ const Dateform = document.getElementById("task-date");
 const Description = document.getElementById("task-description");
 
 let tachesList = [];
+
 
 //sauvegarder liste ses taches dans localstorage-----
 function savetachelocalstorage() {
@@ -26,11 +28,10 @@ function LocalStoragetacheform() {
   if (saveTache) {
     tachesList = JSON.parse(saveTache);
     tachesList.forEach(AfficherTach);
-    
   }
 }
 
-// function pour ajouter une tâche
+// function pour ajouter une tâche,
 function addTach() {
   if (!validateForm()) return;
 
@@ -82,21 +83,30 @@ function AfficherTach(taches) {
 
   switch (taches.Status) {
     case "To Do":
-    //   colonne.innerHTML = "";
 
       colonne.appendChild(tacheElement);
       break;
     case "In Progress":
-    //   progressCol.innerHTML = "";
+      
 
       progressCol.appendChild(tacheElement);
       break;
     case "Done":
-    //   doneCol.innerHTML = "";
+      
 
       doneCol.appendChild(tacheElement);
       break;
   }
+
+  //   counting 
+
+  let todoLength = document.getElementById("to-do-tasks-count");
+  let progressLenggth = document.getElementById("in-progress-tasks-count");
+  let doneLength = document.getElementById("done-tasks-count");
+
+  todoLength.textContent = colonne.children.length;
+  progressLenggth.textContent = progressCol.children.length;
+  doneLength.textContent = doneCol.children.length;
 }
 
 function opentacheModifier(id) {
@@ -105,8 +115,7 @@ function opentacheModifier(id) {
 
   Title.value = taches.Title;
   document.querySelector(
-    `input[name="task-type"][value="${taches.Type}"]`
-  ).checked = true; //Problem
+    `input[name="task-type"][value="${taches.Type}"]`).checked = true; //Problem
   Priority.value = taches.Priority;
   Status.value = taches.Status;
   Dateform.value = taches.Dateform;
@@ -138,11 +147,10 @@ function tacheRefrech() {
   const colonne = document.getElementById("to-do-tasks");
   colonne.innerHTML = "";
   tachesList.forEach(AfficherTach);
-
+  cointtache();
 }
 
 function supprimerTache(id) {
-    
   tachesList = tachesList.filter((t) => t.id !== id);
   Swal.fire({
     title: "Are you sure?",
@@ -151,19 +159,18 @@ function supprimerTache(id) {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
         title: "Deleted!",
         text: "Your file has been deleted.",
-        icon: "success"
+        icon: "success",
       });
     }
   });
   tacheRefrech();
   savetachelocalstorage();
-  
 }
 // // Sélection du bouton Save
 // const saveButton = document.getElementById('task-save-btn');
