@@ -13,8 +13,12 @@ const Dateform = document.getElementById('task-date');
 const Description = document.getElementById('task-description');
 
 let tachesList = [];
-
+// function pour ajouter une tâche
 function addTach() {
+    if (!validateForm()) return;
+
+
+
     const modifieId = form.getAttribute('data-edit-id');
     if (modifieId) {
         modifieTache(Number(modifieId));
@@ -35,7 +39,7 @@ function addTach() {
     form.removeAttribute('data-edit-id');
     document.querySelector("#modal-task").classList.remove("active");
 }
-
+// Affichie Tache
 function AfficherTach(taches) {
     const colonne = document.getElementById(`to-do-tasks`);
     const tacheElement = document.createElement("div");
@@ -71,7 +75,7 @@ function opentacheModifier(id) {
     form.setAttribute('data-edit-id', id);
     document.querySelector("#modal-task").classList.add("active");
 }
-
+//Fonction de modification tache
 function modifieTache(id) {
     const tacheIndex = tachesList.findIndex(t => t.id === id);
     if (tacheIndex === -1) return;
@@ -101,7 +105,59 @@ function supprimerTache(id) {
     tachesList = tachesList.filter(t => t.id !== id);
     tacheRefrech();
 }
+// Fonction de validation du formulaire
+function validateForm() {
+    let isValid = true;
+    resetErrors();
 
+    if (Title.value.trim() === "") {
+        showError(Title, "Title is required.");
+        isValid = false;
+    }
+
+    if (!document.querySelector('input[name="task-type"]:checked')) {
+        showError(document.querySelector('input[name="task-type"]'), "Please select a task type.");
+        isValid = false;
+    }
+
+    if (Priority.value === "") {
+        showError(Priority, "Please select a priority.");
+        isValid = false;
+    }
+
+    if (Status.value === "") {
+        showError(Status, "Please select a status.");
+        isValid = false;
+    }
+
+    if (Dateform.value === "") {
+        showError(Dateform, "Please select a date.");
+        isValid = false;
+    }
+
+    if (Description.value.trim() === "") {
+        showError(Description, "Description is required.");
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Affiche un message d'erreur sous l'élément spécifié
+function showError(element, message) {
+    const errorText = document.createElement("div");
+    errorText.className = "error-text";
+    errorText.style.color = "red";
+    errorText.style.marginTop = "5px";
+    errorText.textContent = message;
+    element.parentNode.appendChild(errorText);
+}
+
+// Réinitialise les messages d'erreur
+function resetErrors() {
+    const errorTexts = document.querySelectorAll(".error-text");
+    errorTexts.forEach(text => text.remove());
+}
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     addTach();
