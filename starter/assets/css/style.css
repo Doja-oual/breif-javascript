@@ -4,9 +4,9 @@
 
 .main-style {
     min-height: 100vh;
-    background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
+    /* background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
     background-size: 360px;
-    background-position: right bottom;
+    background-position: right bottom; */
 }
 .modal__tasks.active {
     display: block;
@@ -116,4 +116,7 @@
         position: relative;
         z-index: 1; 
       }
+      /* .modal__tasks{
+        color: #f38bc1;
+      } */
     
