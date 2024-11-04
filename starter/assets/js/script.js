@@ -13,6 +13,19 @@ const Dateform = document.getElementById('task-date');
 const Description = document.getElementById('task-description');
 
 let tachesList = [];
+
+//fonction de Récupérer la liste des tâches de  LocalStorage -------------//
+function LocalStoragetacheform(){
+    const saveTache=localStorage.getItem('tachesList');
+    if(saveTache){
+        tachesList=JSON.parse(saveTache);
+        tachesList.forEach(AfficherTach);
+    }
+}
+//sauvegarder liste ses taches dans localstorage-----
+function savetachelocalstorage(){
+    localStorage.setItem('tachesList',JSON.stringify(tachesList));
+}
 // function pour ajouter une tâche
 function addTach() {
     if (!validateForm()) return;
@@ -34,6 +47,7 @@ function addTach() {
         };
         tachesList.push(taches);
         AfficherTach(taches);
+        savetachelocalstorage();
     }
     form.reset();
     form.removeAttribute('data-edit-id');
@@ -90,6 +104,7 @@ function modifieTache(id) {
         Description: Description.value.trim()
     };
     tacheRefrech();
+    savetachelocalstorage();
     form.reset();
     form.removeAttribute('data-edit-id');
     document.querySelector("#modal-task").classList.remove("active");
@@ -104,7 +119,15 @@ function tacheRefrech() {
 function supprimerTache(id) {
     tachesList = tachesList.filter(t => t.id !== id);
     tacheRefrech();
+    savetachelocalstorage();
 }
+// // Sélection du bouton Save
+// const saveButton = document.getElementById('task-save-btn');
+
+// // Initialiser le bouton Save en mode désactivé
+// saveButton.disabled = true;
+
+
 // Fonction de validation du formulaire
 function validateForm() {
     let isValid = true;
@@ -141,6 +164,8 @@ function validateForm() {
     }
 
     return isValid;
+    // saveButton.disabled = !isValid;
+
 }
 
 // Affiche un message d'erreur sous l'élément spécifié
@@ -158,7 +183,11 @@ function resetErrors() {
     const errorTexts = document.querySelectorAll(".error-text");
     errorTexts.forEach(text => text.remove());
 }
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit',
+     function (e) {
     e.preventDefault();
     addTach();
+});
+document.addEventListener('DOMContentLoaded', function () {
+    LocalStoragetacheform();
 });
